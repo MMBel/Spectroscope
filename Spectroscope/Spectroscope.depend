@@ -11,10 +11,10 @@
 	"Sfgr.h"
 	"SFML/Audio.hpp"
 
-1646395156 source:c:\spectroscope\spectroscope\src\scope.cpp
+1647853774 source:c:\spectroscope\spectroscope\src\scope.cpp
 	"Scope.h"
 
-1646391527 c:\spectroscope\spectroscope\include\configuration.h
+1647852864 c:\spectroscope\spectroscope\include\configuration.h
 	"handle_ini.h"
 	"SFML/Audio.hpp"
 
@@ -247,7 +247,7 @@
 	<SFML/Audio/Export.hpp>
 	<string>
 
-1646391527 source:c:\spectroscope\spectroscope\src\configuration.cpp
+1647853139 source:c:\spectroscope\spectroscope\src\configuration.cpp
 	"Configuration.h"
 
 1637849663 source:c:\spectroscope\spectroscope\src\handle_ini.cpp
@@ -281,10 +281,10 @@
 	<limits.h>
 	<alloca.h>
 
-1646387173 source:c:\spectroscope\spectroscope\src\sfgr.cpp
+1647853877 source:c:\spectroscope\spectroscope\src\sfgr.cpp
 	"Sfgr.h"
 
-1644244624 c:\spectroscope\spectroscope\include\sfgr.h
+1647853139 c:\spectroscope\spectroscope\include\sfgr.h
 	<iostream>
 	<vector>
 	<thread>

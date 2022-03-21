@@ -24,6 +24,8 @@ public:
     unsigned                    TitleFontSize, AxisTitleFontSize, AxisMarksFontSize, AxisBold, GridBold;
     unsigned                    LMargin, RMargin, TMargin, BMargin;
     unsigned                    FPS = 30;
+    unsigned                    WinWidthPercent = 100;
+    unsigned                    WinHeightPercent = 100;
     std::string                 WindowTitle, ScrshotDir;
     sf::String                  Title, Xtitle, YTitle;
     std::vector<float>          XGrid, YGrid;

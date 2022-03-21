@@ -29,6 +29,7 @@ Scope::Scope(Configuration &cfg)
     if(cfg.cfile.CurrentSection=="") { ErrorDesc="No [Graph] section in config"; return; }
     graph.cfg.Font=graph.cfg.getFontNamed(cfg.cfile.GetStringValue("FontName"));
     graph.cfg.WindowTitle=cfg.cfile.GetStringValue("WindowTitle");
+    graph.cfg.ScrshotDir = c->ScrShotsDir;
     s = cfg.cfile.GetIntValue("XMin");
     if(s>0) graph.cfg.XDimMin=s;
     s = cfg.cfile.GetIntValue("XMax");
@@ -57,6 +58,10 @@ Scope::Scope(Configuration &cfg)
     if(s>0) graph.cfg.TMargin=s;
     s = cfg.cfile.GetIntValue("BottomMargin");
     if(s>0) graph.cfg.BMargin=s;
+    s = cfg.cfile.GetIntValue("WindowWidthPercent");
+    if(s>0 && s<100) graph.cfg.WinWidthPercent = s;
+    s = cfg.cfile.GetIntValue("WindowHeightPercent");
+    if(s>0 && s<100) graph.cfg.WinHeightPercent = s;
     sfs = cfg.cfile.GetStringValue("Title");
     if(sfs!="") graph.cfg.Title = sfs.fromUtf8(sfs.begin(), sfs.end());
     sfs = cfg.cfile.GetStringValue("XTitle");
@@ -71,7 +76,7 @@ Scope::~Scope()
     //dtor
 }
 
-float           Scope::AmpTodB(float Amplitude)
+float   Scope::AmpTodB(float Amplitude)
 {
     return 20*log10(1.f*Amplitude/32768.f);
 }

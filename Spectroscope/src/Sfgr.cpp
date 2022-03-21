@@ -8,8 +8,8 @@ Sfgr::~Sfgr()
     t.join();
 }
 float           Sfgr::YValToCoord(float YValue){
-    float ymin = cfg.TMargin;
-    float ymax = cfg.Vidmode.height - cfg.BMargin;
+    static const float ymin = cfg.TMargin;
+    static const float ymax = cfg.Vidmode.height - cfg.BMargin;
     static const float YRatio = float(ymax - cfg.TMargin)/float(cfg.YDimMax - cfg.YDimMin);
     float result = ymin - YValue*YRatio;
     if (result < ymin) result=ymin;
@@ -17,15 +17,10 @@ float           Sfgr::YValToCoord(float YValue){
     return result;
 }
 float           Sfgr::XValToCoord(float XValue){
-    // X0 = a + b * log10(xmin)
-    // X1 = a + b * log10(xmax)
-    // b = (X1 - X0) / log10 (xmax/xmin)
-    // a = X0 - b * log10(xmin)
-    float X0, X1, xmin, xmax;
-    xmin = cfg.XDimMin;
-    xmax = cfg.XDimMax;
-    X0 = cfg.LMargin;
-    X1 = cfg.Vidmode.width - cfg.RMargin;
+    static const float xmin = cfg.XDimMin;
+    static const float xmax = cfg.XDimMax;
+    static const float X0 = cfg.LMargin;
+    static const float X1 = cfg.Vidmode.width - cfg.RMargin;
     static const float b = (X1-X0)/log10(xmax/xmin);
     static const float a = X0 - b * log10(xmin);
     float result = a + b * log10(XValue);
@@ -40,8 +35,6 @@ void            Sfgr::Configuration::Init(){
     YTitle = L"Амплитуда, dBa";
     Xtitle = L"Частота, Гц";
     Vidmode = sf::VideoMode::getDesktopMode();
-    // Vidmode.width-=Vidmode.width*0.25;
-     Vidmode.height-=Vidmode.height*0.25;
     Font = getFontNamed("tahoma");
     ScrshotDir = "";
     BGCol=sf::Color(235,235,235);
@@ -109,11 +102,6 @@ void            Sfgr::winloop(){
     sf::VertexArray Graph;
     auto Draw{[](Sfgr::Frame* f, sf::RenderTarget &tgt)
     {
-        /*
-        for(sf::Text T : f->Texts) tgt.draw(T);
-        for(sf::RectangleShape L : f->Lines) tgt.draw(L);
-        for(sf::CircleShape C : f->Points) tgt.draw(C);
-        */
         for(const auto& V : f->Texts)  tgt.draw(V);
         for(const auto& V : f->Lines)  tgt.draw(V);
         for(const auto& V : f->Points) tgt.draw(V);
@@ -169,6 +157,8 @@ void            Sfgr::winloop(){
 }
 void            Sfgr::Start(){
     if(Window.isOpen()) return;
+    if(cfg.WinWidthPercent<100)  cfg.Vidmode.width = int(cfg.Vidmode.width/100*cfg.WinWidthPercent);
+    if(cfg.WinHeightPercent<100) cfg.Vidmode.height = int(cfg.Vidmode.height/100*cfg.WinHeightPercent);
     Frames.clear();
     Frame* m = NewFrame(0);
     AddHText(m, cfg.Vidmode.width/2, cfg.TMargin/2, cfg.Title, cfg.TitleFontSize, cfg.TitleCol, sf::Text::Regular, TextPos::CENTER);

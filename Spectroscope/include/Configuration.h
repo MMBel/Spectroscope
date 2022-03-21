@@ -19,7 +19,9 @@ class Configuration
                 CapSection="RecordingDevices";
     UINT        SampleRate,
                 Averaging,
-                FFTFS;
+                FFTFS,
+                WinWidthPercent,
+                WinHeightPercent;
     float       MicSigMult;
 
     Configuration();
