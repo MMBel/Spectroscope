@@ -1,4 +1,9 @@
 #include "Sfgr.h"
+#define OPENGLMAJORVERSION 3
+#define OPENGLMINORVERSION 1
+#define OPENGLANTIALIASINGLEVEL 5
+#define SCREENSHOT_KEY sf::Keyboard::PageDown
+
 
 Sfgr::Sfgr(){ cfg.Init(); }
 
@@ -8,24 +13,24 @@ Sfgr::~Sfgr()
     t.join();
 }
 float           Sfgr::YValToCoord(float YValue){
-    static const float ymin = cfg.TMargin;
-    static const float ymax = cfg.Vidmode.height - cfg.BMargin;
-    static const float YRatio = float(ymax - cfg.TMargin)/float(cfg.YDimMax - cfg.YDimMin);
-    float result = ymin - YValue*YRatio;
-    if (result < ymin) result=ymin;
-    if (result > ymax) result=ymax;
+    static const float  ymin = cfg.TMargin;
+    static const float  ymax = cfg.Vidmode.height - cfg.BMargin;
+    static const float  YRatio = float(ymax - cfg.TMargin)/float(cfg.YDimMax - cfg.YDimMin);
+    float               result = ymin - YValue*YRatio;
+    if (result < ymin)  result = ymin;
+    if (result > ymax)  result = ymax;
     return result;
 }
 float           Sfgr::XValToCoord(float XValue){
-    static const float xmin = cfg.XDimMin;
-    static const float xmax = cfg.XDimMax;
-    static const float X0 = cfg.LMargin;
-    static const float X1 = cfg.Vidmode.width - cfg.RMargin;
-    static const float b = (X1-X0)/log10(xmax/xmin);
-    static const float a = X0 - b * log10(xmin);
-    float result = a + b * log10(XValue);
-    if (result < X0) result = X0;
-    if (result > X1) result = X1;
+    static const float  xmin = cfg.XDimMin;
+    static const float  xmax = cfg.XDimMax;
+    static const float  X0 = cfg.LMargin;
+    static const float  X1 = cfg.Vidmode.width - cfg.RMargin;
+    static const float  b = (X1-X0)/log10(xmax/xmin);
+    static const float  a = X0 - b * log10(xmin);
+    float               result = a + b * log10(XValue);
+    if (result < X0)    result = X0;
+    if (result > X1)    result = X1;
     return result;
 }
 void            Sfgr::Configuration::Init(){
@@ -109,9 +114,9 @@ void            Sfgr::winloop(){
     };
     unsigned ScrshotsCount = 0;
     sf::ContextSettings settings;
-    settings.majorVersion = 3;
-    settings.minorVersion = 1;
-    settings.antialiasingLevel = 4;
+    settings.majorVersion = OPENGLMAJORVERSION;
+    settings.minorVersion = OPENGLMINORVERSION;
+    settings.antialiasingLevel = OPENGLANTIALIASINGLEVEL;
     Window.create(cfg.Vidmode, cfg.WindowTitle, sf::Style::Close, settings);
     Window.setFramerateLimit(cfg.FPS);
     Window.setVerticalSyncEnabled(true);
@@ -129,7 +134,7 @@ void            Sfgr::winloop(){
             if(event.type == sf::Event::Closed) { Window.close(); return; }
             if(event.type == sf::Event::KeyPressed){
                 if(event.key.code == sf::Keyboard::Q) { Window.close(); return; }
-                if(event.key.code == sf::Keyboard::PageDown){
+                if(event.key.code == SCREENSHOT_KEY){
                     sf::Texture sshot;
                     sshot.create(Window.getSize().x, Window.getSize().y);
                     sshot.update(Window);
@@ -205,13 +210,20 @@ void            Sfgr::HideFrame(Sfgr::Frame* f){
     std::vector<Sfgr::Frame*>::iterator it = Frames.begin();
     while(it!=Frames.end())
     {
-        if((*it)->Serial==f->Serial) { Frames.erase(it); break; }
+        if((*it)->Serial==f->Serial) { Frames.erase(it); UnlockFrames(); break; }
         it++;
     }
     UnlockFrames();
 }
 void            Sfgr::DeleteFrame(Frame* f){
     HideFrame(f);
+    for(sf::RectangleShape obj : f->Lines)  delete &obj;
+    for(sf::CircleShape obj : f->Points)    delete &obj;
+    for(sf::Text obj : f->Texts)            delete &obj;
+    f->ArrayGraph.clear();
+    f->Texts.clear();
+    f->Points.clear();
+    f->Lines.clear();
     delete f;
 }
 void            Sfgr::AddPoint(Frame* f, float XValue, float YValue, unsigned Radius, sf::Color Col, sf::String txt, unsigned FontSize){
