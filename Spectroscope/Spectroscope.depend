@@ -281,7 +281,7 @@
 	<limits.h>
 	<alloca.h>
 
-1647934784 source:c:\spectroscope\spectroscope\src\sfgr.cpp
+1647943310 source:c:\spectroscope\spectroscope\src\sfgr.cpp
 	"Sfgr.h"
 
 1647853139 c:\spectroscope\spectroscope\include\sfgr.h
@@ -582,4 +582,6 @@
 	<SFML/Graphics/PrimitiveType.hpp>
 	<SFML/Graphics/Drawable.hpp>
 	<SFML/Window/GlResource.hpp>
+
+1647946079 source:c:\spectroscope\spectroscope\resources.rc
 

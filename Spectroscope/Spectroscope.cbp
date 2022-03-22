@@ -5,11 +5,18 @@
 		<Option title="Spectroscope" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
+		<Option show_notes="0">
+			<notes>
+				<![CDATA[Uses following OpenGL settings:
+Version 3.1
+AntiAliasing level 4]]>
+			</notes>
+		</Option>
 		<Build>
 			<Target title="Debug">
 				<Option output="bin/Debug/Spectroscope" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Debug/" />
-				<Option type="1" />
+				<Option type="0" />
 				<Option compiler="gcc" />
 				<Option parameters="c:\spectroscope\config.ini" />
 				<Compiler>
@@ -50,12 +57,16 @@
 		<Linker>
 			<Add directory="A:/AUD/Prog/SFML-2.5.1/lib" />
 		</Linker>
+		<Unit filename="Icon.ico" />
 		<Unit filename="include/Configuration.h" />
 		<Unit filename="include/Scope.h" />
 		<Unit filename="include/Sfgr.h" />
 		<Unit filename="include/fftStorage.h" />
 		<Unit filename="include/handle_ini.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="resources.rc">
+			<Option compilerVar="WINDRES" />
+		</Unit>
 		<Unit filename="src/Configuration.cpp" />
 		<Unit filename="src/Scope.cpp" />
 		<Unit filename="src/Sfgr.cpp" />

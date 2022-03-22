@@ -111,7 +111,7 @@ void            Sfgr::winloop(){
     sf::ContextSettings settings;
     settings.majorVersion = 3;
     settings.minorVersion = 1;
-    settings.antialiasingLevel = 4.;
+    settings.antialiasingLevel = 4;
     Window.create(cfg.Vidmode, cfg.WindowTitle, sf::Style::Close, settings);
     Window.setFramerateLimit(cfg.FPS);
     Window.setVerticalSyncEnabled(true);
