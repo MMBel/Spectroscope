@@ -4,4 +4,4 @@
 После клонирования не забыть поправить конфиг, и можно запускать командой:<br>
 ```Release\Spectroscope.exe "fullpath-to\Config.ini"```<br>
 Вид программы:<br>
-<img src="graf.png" width=100%>
+<img src="Scrshot.jpg" width=100%>
