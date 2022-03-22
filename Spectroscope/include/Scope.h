@@ -15,9 +15,9 @@ class Scope : public sf::SoundRecorder
     Sfgr::Frame*    p = nullptr;
     sf::Color       GraphColor;
     unsigned        mProcIntv = 0;
+    bool            PeakHoldEnable = false;
     bool            GetStatusStringIfChanged(sf::String& text);
     bool            onProcessSamples(const sf::Int16* samples, size_t SampleCount);
-    bool            PeakHoldEnable = false;
     float           AmpTodB(float Amplitude);
     void            AdjustProcInterval(size_t SampleCount);
     public:
