@@ -30,6 +30,7 @@ Scope::Scope(Configuration &cfg)
     graph.cfg.Font=graph.cfg.getFontNamed(cfg.cfile.GetStringValue("FontName"));
     graph.cfg.WindowTitle=cfg.cfile.GetStringValue("WindowTitle");
     graph.cfg.ScrshotDir = c->ScrShotsDir;
+    PeakHoldEnable = cfg.cfile.GetBoolValue("PeakHoldEnable");
     s = cfg.cfile.GetIntValue("XMin");
     if(s>0) graph.cfg.XDimMin=s;
     s = cfg.cfile.GetIntValue("XMax");
@@ -69,6 +70,7 @@ Scope::Scope(Configuration &cfg)
     sfs = cfg.cfile.GetStringValue("YTitle");
     if(sfs!="") graph.cfg.YTitle = sfs.fromUtf8(sfs.begin(), sfs.end());
     f = graph.NewFrame(stor.AmountPnt);
+    p = graph.NewFrame(stor.AmountPnt);
 }
 
 Scope::~Scope()
@@ -133,6 +135,8 @@ bool    Scope::onProcessSamples(const sf::Int16* samples, size_t SampleCount)
         spnt.YValue = AmpTodB(fpnt.Amplitude);
         f->ArrayGraph.push_back(spnt);
     }
+    if(PeakHoldEnable &&  p->ArrayGraph.empty()) for(Sfgr::point pnt : f->ArrayGraph) p->ArrayGraph.push_back(pnt);
+    if(PeakHoldEnable && !p->ArrayGraph.empty()) for(size_t i=0; i<stor.AmountPnt; ++i) if(p->ArrayGraph[i].YValue < f->ArrayGraph[i].YValue) p->ArrayGraph[i].YValue = f->ArrayGraph[i].YValue;
 
     sf::String txt;
     if(GetStatusStringIfChanged(txt))
@@ -140,13 +144,18 @@ bool    Scope::onProcessSamples(const sf::Int16* samples, size_t SampleCount)
         f->Texts.clear();
         graph.AddHText(f, graph.cfg.Vidmode.width/2, graph.cfg.Vidmode.height-5, txt, 11, sf::Color::Black, sf::Text::Regular, Sfgr::TextPos::CENTER);
     }
-
     graph.ShowFrame(f);
+    graph.ShowFrame(p);
     return true;
 }
 
 void    Scope::Start()
 {
+    if(PeakHoldEnable)
+    {
+        p->ArrayGraph.clear();
+        p->GraphColor = sf::Color::Red;
+    }
     graph.Start();
     start(c->SampleRate);
     t=&graph.t;

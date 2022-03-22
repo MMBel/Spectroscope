@@ -1,48 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
-	<ActiveTarget name="Release" />
-	<File name="src\Sfgr.cpp" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<ActiveTarget name="Debug" />
+	<File name="main.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="6057" topLine="0" />
+			<Cursor1 position="462" topLine="0" />
 		</Cursor>
-		<Folding>
-			<Collapse line="5" />
-			<Collapse line="9" />
-			<Collapse line="18" />
-			<Collapse line="30" />
-			<Collapse line="75" />
-			<Collapse line="92" />
-			<Collapse line="100" />
-			<Collapse line="189" />
-			<Collapse line="194" />
-			<Collapse line="200" />
-			<Collapse line="210" />
-			<Collapse line="214" />
-			<Collapse line="231" />
-			<Collapse line="258" />
-			<Collapse line="274" />
-			<Collapse line="294" />
-			<Collapse line="314" />
-			<Collapse line="327" />
-			<Collapse line="341" />
-			<Collapse line="345" />
-			<Collapse line="348" />
-			<Collapse line="352" />
-		</Folding>
-	</File>
-	<File name="include\Scope.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="452" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="include\fftStorage.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="0" topLine="0" />
-		</Cursor>
-		<Folding>
-			<Collapse line="12" />
-		</Folding>
 	</File>
 	<File name="include\Sfgr.h" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
@@ -52,11 +15,47 @@
 			<Collapse line="35" />
 		</Folding>
 	</File>
-	<File name="src\Scope.cpp" open="1" top="1" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="include\Scope.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="452" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\Sfgr.cpp" open="1" top="1" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4008" topLine="0" />
+		</Cursor>
+		<Folding>
+			<Collapse line="5" />
+			<Collapse line="9" />
+			<Collapse line="18" />
+			<Collapse line="30" />
+			<Collapse line="75" />
+			<Collapse line="92" />
+			<Collapse line="100" />
+			<Collapse line="159" />
+			<Collapse line="191" />
+			<Collapse line="196" />
+			<Collapse line="202" />
+			<Collapse line="212" />
+			<Collapse line="216" />
+			<Collapse line="233" />
+			<Collapse line="260" />
+			<Collapse line="276" />
+			<Collapse line="296" />
+			<Collapse line="316" />
+			<Collapse line="329" />
+			<Collapse line="343" />
+			<Collapse line="347" />
+			<Collapse line="350" />
+			<Collapse line="354" />
+		</Folding>
+	</File>
+	<File name="src\Scope.cpp" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="2602" topLine="0" />
 		</Cursor>
 		<Folding>
+			<Collapse line="3" />
 			<Collapse line="4" />
 			<Collapse line="74" />
 			<Collapse line="79" />
@@ -65,24 +64,6 @@
 			<Collapse line="112" />
 			<Collapse line="155" />
 		</Folding>
-	</File>
-	<File name="src\Configuration.cpp" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2001" topLine="36" />
-		</Cursor>
-		<Folding>
-			<Collapse line="81" />
-		</Folding>
-	</File>
-	<File name="main.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="462" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="include\Configuration.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="628" topLine="3" />
-		</Cursor>
 	</File>
 	<File name="src\fftstorage.cpp" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
@@ -107,6 +88,27 @@
 			<Collapse line="323" />
 			<Collapse line="342" />
 			<Collapse line="361" />
+		</Folding>
+	</File>
+	<File name="include\fftStorage.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
+		<Folding>
+			<Collapse line="12" />
+		</Folding>
+	</File>
+	<File name="include\Configuration.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="628" topLine="3" />
+		</Cursor>
+	</File>
+	<File name="src\Configuration.cpp" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2001" topLine="36" />
+		</Cursor>
+		<Folding>
+			<Collapse line="81" />
 		</Folding>
 	</File>
 </CodeBlocks_layout_file>

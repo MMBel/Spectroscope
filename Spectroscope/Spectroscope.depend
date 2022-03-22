@@ -5,13 +5,13 @@
 	"Configuration.h"
 	"Scope.h"
 
-1646393810 c:\spectroscope\spectroscope\include\scope.h
+1647936126 c:\spectroscope\spectroscope\include\scope.h
 	"Configuration.h"
 	"fftStorage.h"
 	"Sfgr.h"
 	"SFML/Audio.hpp"
 
-1647853774 source:c:\spectroscope\spectroscope\src\scope.cpp
+1647935704 source:c:\spectroscope\spectroscope\src\scope.cpp
 	"Scope.h"
 
 1647852864 c:\spectroscope\spectroscope\include\configuration.h
@@ -281,7 +281,7 @@
 	<limits.h>
 	<alloca.h>
 
-1647853877 source:c:\spectroscope\spectroscope\src\sfgr.cpp
+1647934784 source:c:\spectroscope\spectroscope\src\sfgr.cpp
 	"Sfgr.h"
 
 1647853139 c:\spectroscope\spectroscope\include\sfgr.h
