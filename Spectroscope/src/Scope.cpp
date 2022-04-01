@@ -116,6 +116,7 @@ bool    Scope::onProcessSamples(const sf::Int16* samples, size_t SampleCount)
     AdjustProcInterval(SampleCount);
     if(SampleCount==0) return true;
 
+
     for(size_t i=0; i<SampleCount; ++i)
     {
         float Amp = c->MicSigMult * samples[i];
@@ -123,28 +124,18 @@ bool    Scope::onProcessSamples(const sf::Int16* samples, size_t SampleCount)
         if (Amp<-32767) Amp=-32767;
         stor.AddSample(Amp);
     }
+
     stor.DoFFT();
 
     f->ArrayGraph.clear();
-    fpoint fpnt;
-    Sfgr::point spnt;
     for(size_t i=0; i<stor.AmountPnt; ++i)
     {
-        fpnt = stor.GetPointOptimized(i);
+        fpoint fpnt = stor.GetPointOptimized(i);
+        Sfgr::point spnt;
         spnt.XValue = fpnt.Frequency;
         spnt.YValue = AmpTodB(fpnt.Amplitude);
         f->ArrayGraph.push_back(spnt);
     }
-    if(PeakHoldEnable &&  p->ArrayGraph.empty()) for(Sfgr::point pnt : f->ArrayGraph) p->ArrayGraph.push_back(pnt);
-    if(PeakHoldEnable && !p->ArrayGraph.empty())
-    {
-        for(size_t i=0; i<stor.AmountPnt; ++i)
-        {
-            Sfgr::point pnt = f->ArrayGraph[i];
-            if(p->ArrayGraph[i].YValue < pnt.YValue) p->ArrayGraph[i].YValue = pnt.YValue;
-        }
-    }
-
     sf::String txt;
     if(GetStatusStringIfChanged(txt))
     {
@@ -152,7 +143,25 @@ bool    Scope::onProcessSamples(const sf::Int16* samples, size_t SampleCount)
         graph.AddHText(f, graph.cfg.Vidmode.width/2, graph.cfg.Vidmode.height-5, txt, 11, sf::Color::Black, sf::Text::Regular, Sfgr::TextPos::CENTER);
     }
     graph.ShowFrame(f);
-    if(PeakHoldEnable) graph.ShowFrame(p);
+
+    if(!PeakHoldEnable) return true;
+    if(p->ArrayGraph.empty()) for(Sfgr::point pnt : f->ArrayGraph) p->ArrayGraph.push_back(pnt);
+    else
+    {
+        for(size_t i=0; i<stor.AmountPnt; ++i)
+        {
+            Sfgr::point fpnt = f->ArrayGraph[i];
+            Sfgr::point ppnt = p->ArrayGraph[i];
+            if (
+               ppnt.YValue < fpnt.YValue    ||
+               std::isinf(ppnt.YValue)      ||
+               std::isnan(ppnt.YValue)      ||
+               ppnt.YValue == graph.cfg.YDimMax
+                )
+            p->ArrayGraph[i].YValue = fpnt.YValue;
+        }
+    }
+    graph.ShowFrame(p);
     return true;
 }
 
