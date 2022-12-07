@@ -1,7 +1,7 @@
 # Spectroscope
 Спектроскоп для звуковой карты<br>
 Написан в CodeBlocks, использует kissfft и sfml<br>
-Распаковываем Spectroscope.zip в C:\Spectroscope
+Распаковываем Spectroscope.zip в C:\Spectroscope<br>
 Не забыть поправить конфиг, и можно запускать командой:<br>
 ```Spectroscope.exe```<br>
 Прога попытается найти Config.ini в каталоге, из которого запущена, и в этом файле все что ей надо...<br>
